@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petri Dish - 生物科普小站</title>
+    <!-- 加载 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 加载 Inter 字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- 自定义样式 -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            /* 这就是“炫酷”的背景！
+              一个从深紫到深蓝的渐变
+            */
+            background-color: #0f0c29;
+            background-image: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+        }
+
+        /* 炫酷的渐变文字标题 */
+        .gradient-text {
+            @apply bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-500 to-cyan-400;
+        }
+
+        /* 导航栏 "标签" 激活时的样式 */
+        .tab-active {
+            @apply text-white border-fuchsia-500;
+        }
+    </style>
+</head>
+<body class="text-gray-100 min-h-screen">
+
+    <!-- 
+      导航栏
+      使用 backdrop-blur 实现现代的“毛玻璃”效果
+    -->
+    <header class="sticky top-0 z-50 w-full bg-gray-900/70 backdrop-blur-lg border-b border-gray-700/50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- 网站标题 -->
+            <a href="#" class="text-3xl font-black gradient-text">
+                🔬 Petri Dish
+            </a>
+            
+            <!-- 导航标签 (用于切换页面) -->
+            <div class="space-x-6">
+                <!-- 博客标签 (默认激活) -->
+                <button id="blog-tab" class="font-medium text-lg pb-1 border-b-2 transition-colors duration-300 tab-active">
+                    博客
+                </button>
+                <!-- 关于我标签 -->
+                <button id="about-tab" class="font-medium text-lg pb-1 border-b-2 border-transparent text-gray-400 hover:text-white transition-colors duration-300">
+                    关于我
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <main class="container mx-auto px-6 py-16">
+
+        <!-- ======================= -->
+        <!--    博客页面 (默认显示)    -->
+        <!-- ======================= -->
+        <div id="blog-content" class="block">
+            
+            <!-- 置顶/最新文章 (大卡片) -->
+            <section class="mb-20">
+                <h2 class="text-3xl font-bold mb-8 flex items-center">
+                    <!-- 
+                        装饰点: 
+                        你可以把这里的 🧬 SVG 换成你自己的小画 (img 标签)
+                        例如: <img src="你的图片链接.png" class="w-8 h-8 mr-3" alt="装饰">
+                    -->
+                    <span class="text-4xl mr-3" title="DNA">🧬</span>
+                    置顶文章
+                </h2>
+                <div class="bg-gray-800/50 rounded-2xl shadow-2xl overflow-hidden md:flex group">
+                    <img src="https://placehold.co/800x600/6D28D9/FEF08A?text=Feature+Image" alt="[置顶文章封面]" class="w-full md:w-1/2 h-64 md:h-auto object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="p-8 md:p-12 flex flex-col justify-center">
+                        <span class="text-xs font-bold text-fuchsia-400 bg-fuchsia-900/50 px-3 py-1 rounded-full self-start mb-4">
+                            本周热点（也可能是本月）
+                        </span>
+                        <h3 class="text-3xl font-bold mb-4 text-white">
+                            <a href="#" class="hover:text-fuchsia-300 transition-colors">还没有定好要写什么捏</a>
+                        </h3>
+                        <p class="text-gray-300 leading-relaxed mb-6">
+                            我真是太厉害了
+                        </p>
+                        <a href="#" class="font-semibold text-fuchsia-400 group-hover:text-fuchsia-300 transition-colors">
+                            深入阅读 <span class="opacity-0 group-hover:opacity-100 group-hover:ml-1 transition-all duration-300">&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 博客文章列表 -->
+            <section>
+                <h2 class="text-3xl font-bold mb-8">所有文章</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- 博客卡片 1 (模板) -->
+                    <article class="bg-gray-800/50 rounded-2xl shadow-xl overflow-hidden flex flex-col group transition-all duration-300 hover:shadow-fuchsia-500/10 hover:-translate-y-1">
+                        <a href="#">
+                            <img src="https://placehold.co/600x400/0891B2/E0F2FE?text=Blog+Cover+1" alt="[文章封面]" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105">
+                        </a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <span class="text-xs font-bold text-cyan-400 bg-cyan-900/50 px-3 py-1 rounded-full self-start mb-3">
+                                细胞生物学
+                            </span>
+                            <h3 class="text-xl font-bold mb-3 text-white">
+                                <a href="#" class="hover:text-cyan-300 transition-colors">线粒体一定是1吧</a>
+                            </h3>
+                            <p class="text-gray-300 text-sm leading-relaxed flex-grow">
+                                最恐怖的一集
+                            </p>
+                            <div class="mt-6">
+                                <a href="#" class="font-semibold text-cyan-400 group-hover:text-cyan-300 transition-colors">
+                                    阅读更多 <span class="opacity-0 group-hover:opacity-100 group-hover:ml-1 transition-all duration-300">&rarr;</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 博客卡片 2 (模板) -->
+                    <article class="bg-gray-800/50 rounded-2xl shadow-xl overflow-hidden flex flex-col group transition-all duration-300 hover:shadow-lime-500/10 hover:-translate-y-1">
+                        <a href="#">
+                            <img src="https://placehold.co/600x400/65A30D/ECFCCB?text=Blog+Cover+2" alt="[文章封面]" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105">
+                        </a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <span class="text-xs font-bold text-lime-400 bg-lime-900/50 px-3 py-1 rounded-full self-start mb-3">
+                                植物学
+                            </span>
+                            <h3 class="text-xl font-bold mb-3 text-white">
+                                <a href="#" class="hover:text-lime-300 transition-colors">光合作用一定是0吧</a>
+                            </h3>
+                            <p class="text-gray-300 text-sm leading-relaxed flex-grow">
+                                我植物学学的就是一坨💩
+                            </p>
+                            <div class="mt-6">
+                                <a href="#" class="font-semibold text-lime-400 group-hover:text-lime-300 transition-colors">
+                                    阅读更多 <span class="opacity-0 group-hover:opacity-100 group-hover:ml-1 transition-all duration-300">&rarr;</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 博客卡片 3 (模板) -->
+                    <article class="bg-gray-800/50 rounded-2xl shadow-xl overflow-hidden flex flex-col group transition-all duration-300 hover:shadow-pink-500/10 hover:-translate-y-1">
+                        <a href="#">
+                            <img src="https://placehold.co/600x400/DB2777/FCE7F3?text=Blog+Cover+3" alt="[文章封面]" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105">
+                        </a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <span class="text-xs font-bold text-pink-400 bg-pink-900/50 px-3 py-1 rounded-full self-start mb-3">
+                                免疫学
+                            </span>
+                            <h3 class="text-xl font-bold mb-3 text-white">
+                                <a href="#" class="hover:text-pink-300 transition-colors">今年获得诺贝尔奖啦</a>
+                            </h3>
+                            <p class="text-gray-300 text-sm leading-relaxed flex-grow">
+                                那很不好了，新的考点增加了
+                            </p>
+                            <div class="mt-6">
+                                <a href="#" class="font-semibold text-pink-400 group-hover:text-pink-300 transition-colors">
+                                    阅读更多 <span class="opacity-0 group-hover:opacity-100 group-hover:ml-1 transition-all duration-300">&rarr;</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+        </div> <!-- 结束 博客页面 -->
+        
+
+        <!-- ======================= -->
+        <!--   关于我 页面 (默认隐藏)  -->
+        <!-- ======================= -->
+        <div id="about-content" class="hidden">
+            <section class="max-w-3xl mx-auto bg-gray-800/50 rounded-2xl shadow-2xl p-10 md:p-16">
+                
+                <h2 class="text-4xl font-bold mb-8 gradient-text text-center">
+                    关于我
+                </h2>
+
+                <!-- 
+                    装饰点: 
+                    这就是为你预留的装饰空间！
+                    把下面的 placeholder 换成你的画，它会自然地浮动在文字右侧。
+                -->
+                <img src="https://placehold.co/300x300/1F2937/9CA3AF?text=你的可爱画作:)" alt="[这里放你的画作描述]" class="float-right m-4 rounded-lg w-32 md:w-48 shadow-lg transform rotate-3 transition-transform duration-300 hover:rotate-0 hover:scale-105">
+
+                <p class="text-lg text-gray-200 leading-relaxed mb-4">
+                    你好！我是一个完全不会编程的高中生。
+                </p>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                    这里所有的代码全部都是ai写的，有的画是我画的，当然整体设计是ai设计的。我觉得还不错，回头想换的话再慢慢换吧。
+                </p>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                    建立网站的原因单纯是因为觉得很炫啊！闲的没事了属于是。
+                </p>
+                <p class="text-gray-300 leading-relaxed">
+                    
+                </p>
+                <p class="text-gray-300 leading-relaxed mt-6">
+                    非常感谢你的访问！
+                </p>
+                
+            </section>
+        </div> <!-- 结束 关于我页面 -->
+
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-900 border-t border-gray-700/50 mt-24 py-12">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p class="text-lg font-semibold gradient-text mb-2">🔬 Petri Dish</p>
+            <p class="text-sm">
+                © 2025 - 邮箱：songze@student.breckschool.com
+            </p>
+        </div>
+    </footer>
+
+
+    <!-- 
+      页面切换的 JavaScript
+      (这个必须放在 body 底部)
+    -->
+    <script>
+        // 等待网页内容加载完毕
+        window.addEventListener('DOMContentLoaded', () => {
+            // 获取所有需要操作的元素
+            const blogTab = document.getElementById('blog-tab');
+            const aboutTab = document.getElementById('about-tab');
+            const blogContent = document.getElementById('blog-content');
+            const aboutContent = document.getElementById('about-content');
+
+            // 点击“博客”标签
+            blogTab.addEventListener('click', () => {
+                // 显示博客内容，隐藏“关于我”
+                blogContent.classList.remove('hidden');
+                blogContent.classList.add('block');
+                aboutContent.classList.add('hidden');
+                aboutContent.classList.remove('block');
+
+                // 切换激活样式
+                blogTab.classList.add('tab-active');
+                aboutTab.classList.remove('tab-active');
+                aboutTab.classList.add('text-gray-400', 'border-transparent');
+            });
+
+            // 点击“关于我”标签
+            aboutTab.addEventListener('click', () => {
+                // 隐藏博客内容，显示“关于我”
+                blogContent.classList.add('hidden');
+                blogContent.classList.remove('block');
+                aboutContent.classList.remove('hidden');
+                aboutContent.classList.add('block');
+
+                // 切换激活样式
+                aboutTab.classList.add('tab-active');
+                blogTab.classList.remove('tab-active');
+                blogTab.classList.add('text-gray-400', 'border-transparent');
+            });
+        });
+    </script>
+
+</body>
+</html>
